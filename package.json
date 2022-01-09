@@ -1,16 +1,15 @@
 {
-  "name": "project-setup",
   "version": "1.0.0",
   "description": "",
   "config": {
     "dist": "dist",
-    "domain": "chrono-setup"
+    "domain": "happynings-with-jovia"
   },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "deploy": "surge ./%npm_package_config_dist% --domain %npm_package_config_domain%.surge.sh"
+    "deploy": "vite build && surge ./%npm_package_config_dist% --domain %npm_package_config_domain%.surge.sh"
   },
   "keywords": [],
   "author": "Justin Pascual",

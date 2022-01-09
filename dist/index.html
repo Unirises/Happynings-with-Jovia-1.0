@@ -5,141 +5,86 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Project Setup</title>
-  <script type="module" crossorigin src="/assets/index.f2936515.js"></script>
-  <link rel="stylesheet" href="/assets/index.746eeea6.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Questrial&family=Sniglet&display=swap" rel="stylesheet">
+  <title>Happynings with Jovia 1.0</title>
+  <link rel="stylesheet" href="/assets/index.2e0ae9f4.css">
 </head>
-<body class="flex items-start justify-center min-h-screen h-auto w-full overflow-x-hidden">
-    <!-- navigation bar -->
-    <nav class="fixed top-0 left-0 flex items-center justify-between h-16 md:h-20 w-full z-50 px-4 lg:px-10 2xl:px-20 bg-black transition-all duration-500">
-        <!-- logo -->
-        <a href="#" class="transform hover:scale-110 transition-transform">
-            <img class="w-20 lg:w-24 h-auto" src="/assets/logo.29a8fec4.svg" alt="">
-        </a>
+<body class="transition-all duration-400 flex items-center justify-center min-h-screen h-auto w-full overflow-x-hidden">
 
-        <!-- links -->
-        <div class="hidden lg:block">
-            <ul class="flex flex-row gap-12">
-                <li><a href="#" class="text-white text-base">Link 1</a></li>
-                <li><a href="#" class="text-white text-base">Link 2</a></li>
-                <li><a href="#" class="text-white text-base">Link 3</a></li>
-                <li><a href="#" class="text-white text-base">Link 4</a></li>
-                <li><a href="#" class="text-white text-base">Link 5</a></li>
-            </ul>
+  <main id="app" class="w-full h-screen">
+    <button @click="nextPage(0)" class="bg-red-500 absolute top-0 left-0 z-50">Reset</button>
+    <!-- page 0 -->
+    <section class="flex items-center justify-center" v-if="getPage() == 0" @click="nextPage(1)">
+        <img class="w-[75%] h-auto" src="/assets/page-0.9ee765d5.png" alt="">
+    </section>
+
+    <!-- page 1 -->
+    <section class="flex items-center justify-center" v-if="getPage() == 1" @click="nextPage(2)">
+       <img class="w-[90%] h-auto" src="/assets/page-1.d793fa53.png" alt="">
+    </section>
+
+    <!-- page 2 -->
+    <section class="flex items-center justify-center" v-if="getPage() == 2" @click="nextPage(3)">
+       <img class="w-[90%] h-auto" src="/assets/page-2.4839a123.png" alt="">
+    </section>
+
+    <!-- page 3 -->
+    <section class="flex items-center justify-center bg-primary-1 w-full h-screen" v-if="getPage() == 3" @click="nextPage(4)">
+       <img class="w-[800px] h-auto" src="/assets/page-3.f2fe7659.png" alt="">
+    </section>
+
+    <!-- page 4 -->
+    <section class="flex items-center justify-center bg-primary-1 w-full h-screen" v-if="getPage() == 4" @click="nextPage(4)">
+      
+      <div class="grid grid-cols-2 w-full h-max">
+        <div class="w-full h-screen flex place-items-center relative">
+          <div class="ml-[20%] -mt-[30%] w-[65%]">
+            <img class="w-full h-auto" src="/assets/tv-1.096aee6a.png" alt="">
+            <audio controls class="absolute top-[42%] left-[35%] w-[35%]">
+              <source src="/assets/hiaraya_manwari.8380d4c5.mp3" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
         </div>
 
-        <!-- button -->
-        <div class="hidden lg:block">
-            <a href="#" class="bg-white text-black text-base py-3 px-7 rounded-md">Button 1</a>
+        <div class="w-full h-screen flex flex-col place-items-center relative">
+          <img class=" mt-[10%] w-[60%]" src="/assets/q1.beb4becd.svg" alt="">
+          <input class="mt-[2%] w-[50%] border-[10px] p-[20px] bg-transparent rounded-[20px] border-primary-2 text-[20px] font-tertiary-font" type="text">
         </div>
-
-        <!-- mobile menu buttons -->
-        <div class="flex flex-row items-center gap-5 lg:hidden">    
-            <!-- button -->
-            <a href="#" class="bg-white text-black text-sm py-2 px-4 rounded-md">Button 1</a>
-
-            <div id="menu-button" class="flex flex-col justify-between w-7 h-6 cursor-pointer ">
-                <span class="bg-white w-full h-[3px] block rounded-full"></span>
-                <span class="bg-white w-1/2 h-[3px] block rounded-full ml-auto"></span>
-                <span class="bg-white w-full h-[3px] block rounded-full"></span>
-            </div>
-        </div>
-    </nav>  
-
-    <!-- mobile menu content -->
-    <div id="menu-content" class="bg-black opacity-0 lg:opacity-0 pointer-events-none lg:pointer-events-none fixed flex flex-col justify-between z-50 h-screen w-full top-0 left-0 right-0 overflow-auto transition-all">
-
-        <div class="flex items-center justify-between px-4 h-16 md:h-20">
-            <!-- logo -->
-            <img class="w-20 h-auto block" src="/assets/logo.29a8fec4.svg" alt="">
-
-            <!-- close button -->
-            <a id="menu-close-button" class="flex flex-col h-7 w-7 cursor-pointer relative">
-                <span class="bg-white w-full h-[3px] block rounded-sm absolute transform rotate-45 top-3"></span>
-                <span class="bg-white w-full h-[3px] block rounded-sm absolute transform -rotate-45 top-3"></span>
-            </a>
-        </div>
-
-        <ul id="link-container" class="flex flex-col gap-7 text-2xl text-center w-full min-h-350 justify-center" >
-            <li><a href="#" class="text-white text-base">Link 1</a></li>
-            <li><a href="#" class="text-white text-base">Link 2</a></li>
-            <li><a href="#" class="text-white text-base">Link 3</a></li>
-            <li><a href="#" class="text-white text-base">Link 4</a></li>
-            <li><a href="#" class="text-white text-base">Link 5</a></li>
-        </ul>
-
-        <div></div>
-    </div>
-
-    <main class="w-full h-auto mt-16 md:mt-20">
-        <!-- Hero Section -->
-        <section class="bg-gray-500 w-full h-auto">
-            <div class="section">
-                 <!-- Contents here -->
-            </div>
-        </section>
-
-        <!-- Other Sections -->
-        <section class="bg-gray-700 w-full h-auto">
-            <div class="section">
-                 <!-- Contents here -->
-            </div>
-        </section>
-
-        <!-- footer -->
-        <footer class="bg-black w-full h-auto pt-20 px-5 sm:px-10 md:px-16 lg:pt-16 lg:px-16 relative flex justify-center">
-            <div class="container max-auto">
-                <div class="grid lg:grid-cols-12 gap-10">
-                
-                    <div class="col-span-4 flex flex-col justify-start items-start">
-                        <img class="w-3/12 sm:w-2/12 md:w-2/12 lg:w-2/6 mb-5" src="/assets/logo.29a8fec4.svg" alt="">
-                        <p class="text-white text-opacity-60 mt-4 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam fuga aperiam atque obcaecati rerum amet suscipit blanditiis! Repellat, natus veniam aut dolor doloremque, itaque animi a ab, cumque amet eveniet sunt dolorum ipsa voluptatum consequuntur quia aliquid minus sint sit?</p>
-                    </div>
-                    
-                    <div class="col-span-4">
-                        <div class="text-sm grid grid-cols-2">
-                            <ul>
-                                <li class="mb-4"><a class="text-white/50 hover:text-white/100" href="">Link 1</a></li>
-                                <li class="mb-4"><a class="text-white/50 hover:text-white/100" href="">Link 2</a></li>
-                                <li class="mb-4"><a class="text-white/50 hover:text-white/100" href="">Link 3</a></li>
-                                <li class="mb-4"><a class="text-white/50 hover:text-white/100" href="">Link 4</a></li>
-                            </ul>
-
-                            <ul>
-                                <li class="mb-4"><a class="text-white/50 hover:text-white/100" href="">Link 1</a></li>
-                                <li class="mb-4"><a class="text-white/50 hover:text-white/100" href="">Link 2</a></li>
-                                <li class="mb-4"><a class="text-white/50 hover:text-white/100" href="">Link 3</a></li>
-                                <li class="mb-4"><a class="text-white/50 hover:text-white/100" href="">Link 4</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div class="col-span-4 flex flex-col gap-10">
-                        <div class="block w-full">
-                            <p class="text-sm text-white text-opacity-50 mb-2">Contact Us</p>
-                            <a class="text-white/70 text-lg hover:text-white/100" href="#">info@flappydoge.com</a>
-                        </div>
-
-                        <div class="block w-full">
-                            <p class="text-sm text-white text-opacity-50 mb-2">Ask a Questions</p>
-                            <a class="text-white/70 text-lg hover:text-white/100" href="">support@flappydoge.com</a>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="flex flex-col-reverse md:flex-row items-center justify-end gap-3 text-center py-7 mt-10">
-                    <p class="text-white mr-auto text-xs text-opacity-50 w-full block md:w-auto">© 2021 Project Name. All rights reserved</p>
-
-                    <ul class="flex gap-5 w-full justify-center md:w-auto">
-                        <li><a class="text-white text-xs text-opacity-50 hover:text-white text-left block w-full" href="#">Terms of use</a></li>
-                        <li><a class="text-white text-xs text-opacity-50 hover:text-white text-left block w-full" href="#">Privacy Policy</a></li>
-                    </ul>
-                </div>
-            </div>
-        </footer>
-    </main>
+      </div>
+      
+        <img class="absolute left-[5%] bottom-[5%] z-50 w-[9%]" src="/assets/plant-1.67c39aa6.png" alt="">
+        <img class="absolute right-[5%] bottom-[30%] z-50 w-[9%]" src="data:image/png;base64,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" alt="">
+        <img class="absolute bottom-[5%] z-50 w-[40%]" src="/assets/couch-1.4acf1a6c.png" alt="">
+        <div class="w-full h-[16%] bg-primary-2 absolute bottom-0 left-0"></div>
+    </section>
+  </main>
 
 </body>
-
+<!-- <script type="module" src="./src/scripts/main.js"></script> -->
+<!-- development version, includes helpful console warnings -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+  if(sessionStorage.getItem('page_id') == null) {
+    sessionStorage.setItem('page_id', 0)
+  }
+  const app = new Vue({
+    el: '#app',
+    data: {
+      active_page: 0
+    },
+    methods: {
+      nextPage: function (current_page){
+         sessionStorage.setItem('page_id', current_page);
+         this.active_page = current_page
+      },
+      getPage: function () {
+        this.active_page = parseInt(sessionStorage.getItem('page_id'))
+        return this.active_page
+      }
+    }
+  })
+</script>
 </html>
