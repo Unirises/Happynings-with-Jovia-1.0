@@ -9,40 +9,62 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Questrial&family=Sniglet&display=swap" rel="stylesheet">
   <title>Happynings with Jovia 1.0</title>
-  <link rel="stylesheet" href="/assets/index.2e0ae9f4.css">
+  <script type="module" crossorigin src="/assets/index.c3417e0a.js"></script>
+  <link rel="stylesheet" href="/assets/index.3e7c26fb.css">
 </head>
-<body class="transition-all duration-400 flex items-center justify-center min-h-screen h-auto w-full overflow-x-hidden">
+<body class="transition-all duration-400 flex items-center justify-center min-h-screen h-auto w-full overflow-x-hidden overflow-y-hidden bg-white">
+ 
+  <div class="fixed top-0 left-0 w-full lg:hidden h-screen bg-primary-2 z-50 flex items-center justify-center flex-col">
 
-  <main id="app" class="w-full h-screen">
-    <button @click="nextPage(0)" class="bg-red-500 absolute top-0 left-0 z-50">Reset</button>
+  </div>
+  <main id="app" class="w-full h-screen z-40">
+    
+    <p class="absolute bg-black text-white opacity-10">For development only - current page {{ active_page }}</p>
+
+    <button @click="nextPage(0)" class="w-[5%] absolute top-[5%] left-[2%] z-50 drop-shadow-md">
+      <img class="w-full h-auto" src="data:image/png;base64,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" alt="">
+    </button>
     <!-- page 0 -->
-    <section class="flex items-center justify-center" v-if="getPage() == 0" @click="nextPage(1)">
-        <img class="w-[75%] h-auto" src="/assets/page-0.9ee765d5.png" alt="">
+    <section class="flex items-center justify-center notebook-bg" v-if="getPage() == 0">
+        <img class="w-[75%] h-auto" src="/assets/page-0.66b36e31.png" alt="">
+        <button  @click="nextPage(1)" class="absolute bottom-[15%] w-[20%] drop-shadow-md">
+          <img class="w-full" src="/assets/start-button.b17a306b.png" alt="">
+        </button>
     </section>
 
     <!-- page 1 -->
-    <section class="flex items-center justify-center" v-if="getPage() == 1" @click="nextPage(2)">
-       <img class="w-[90%] h-auto" src="/assets/page-1.d793fa53.png" alt="">
+    <section class="flex items-center justify-center notebook-bg" v-if="getPage() == 1">
+       <img class="w-[90%] h-auto" src="/assets/page-1.40b2e211.png" alt="">
+       <button  @click="nextPage(2)" class="absolute drop-shadow-md bottom-[5%] right-[5%] w-[20%]">
+          <img class="w-full" src="/assets/continue-button.9b67e0da.png" alt="">
+        </button>
     </section>
 
     <!-- page 2 -->
-    <section class="flex items-center justify-center" v-if="getPage() == 2" @click="nextPage(3)">
-       <img class="w-[90%] h-auto" src="/assets/page-2.4839a123.png" alt="">
+    <section class="flex items-center justify-center notebook-bg" v-if="getPage() == 2">
+       <img class="w-[90%] h-auto" src="/assets/page-2.fed7ad60.png" alt="">
+
+       <button  @click="nextPage(3)" class="drop-shadow-md absolute bottom-[5%] right-[5%] w-[20%]">
+          <img class="w-full" src="/assets/continue-button.9b67e0da.png" alt="">
+        </button>
     </section>
 
     <!-- page 3 -->
-    <section class="flex items-center justify-center bg-primary-1 w-full h-screen" v-if="getPage() == 3" @click="nextPage(4)">
+    <section class="flex items-center justify-center bg-primary-1 w-full h-screen" v-if="getPage() == 3">
        <img class="w-[800px] h-auto" src="/assets/page-3.f2fe7659.png" alt="">
+       <button  @click="nextPage(4)" class="drop-shadow-md absolute bottom-[5%] right-[5%] w-[20%]">
+          <img class="w-full" src="/assets/continue-button.9b67e0da.png" alt="">
+        </button>
     </section>
 
-    <!-- page 4 -->
-    <section class="flex items-center justify-center bg-primary-1 w-full h-screen" v-if="getPage() == 4" @click="nextPage(4)">
+    <!-- page 4 - question 1-->
+    <section @keyup.enter="checkAnswer('SElSQVlBLU1BTkFXQVJJ', 5)" class="flex items-center justify-center bg-primary-1 w-full h-screen" v-if="getPage() == 4">
       
       <div class="grid grid-cols-2 w-full h-max">
         <div class="w-full h-screen flex place-items-center relative">
           <div class="ml-[20%] -mt-[30%] w-[65%]">
             <img class="w-full h-auto" src="/assets/tv-1.096aee6a.png" alt="">
-            <audio controls class="absolute top-[42%] left-[35%] w-[35%]">
+            <audio controls class="absolute top-[42%] left-[35%] w-[35%] ">
               <source src="/assets/hiaraya_manwari.8380d4c5.mp3" type="audio/mpeg">
               Your browser does not support the audio element.
             </audio>
@@ -51,7 +73,8 @@
 
         <div class="w-full h-screen flex flex-col place-items-center relative">
           <img class=" mt-[10%] w-[60%]" src="/assets/q1.beb4becd.svg" alt="">
-          <input class="mt-[2%] w-[50%] border-[10px] p-[20px] bg-transparent rounded-[20px] border-primary-2 text-[20px] font-tertiary-font" type="text">
+          <input id="answer_field_1" v-model="user_answer" class="focus:bg-primary-2 outline-none mt-[2%] w-[50%] border-[10px] p-[10px] bg-transparent rounded-[20px] border-primary-2 text-[20px] font-tertiary-font uppercase font-bold" type="text">
+          
         </div>
       </div>
       
@@ -59,32 +82,62 @@
         <img class="absolute right-[5%] bottom-[30%] z-50 w-[9%]" src="data:image/png;base64,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" alt="">
         <img class="absolute bottom-[5%] z-50 w-[40%]" src="/assets/couch-1.4acf1a6c.png" alt="">
         <div class="w-full h-[16%] bg-primary-2 absolute bottom-0 left-0"></div>
+
+        <button type="button"  @click="checkAnswer('SElSQVlBLU1BTkFXQVJJ', 5)" class="absolute bottom-[5%] right-[5%] w-[20%] drop-shadow-md">
+          <img class="w-full" src="/assets/answer-button.1cc86561.png" alt="">
+        </button>
+    </section>
+
+    <!-- page 5 - answer 1 -->
+    <section class="flex items-center justify-center bg-primary-1 w-full h-screen" v-if="getPage() == 5">
+        <iframe class="z-50 w-[33%] h-auto aspect-video absolute top-[12.5%] right-[12.1%]" src="https://drive.google.com/file/d/1O_G-sbQZt1RDLqo3uyi4y__B8u0rQx5F/preview" width="640" height="480" allow="autoplay" frameborder="0"></iframe>
+        <img class="absolute left-[15%] top-[20%] z-50 w-[30%]" src="/assets/a1.3b5f9488.svg" alt="">
+        <img class="absolute left-[2%] top-[30%] z-50 w-[9%]" src="data:image/png;base64,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" alt="">
+        <img class="absolute right-[5%] top-[10%] z-40 w-[50%]" src="/assets/tv-2.aa8b2296.png" alt="">
+        <img class="absolute left-[10%] bottom-[5%] z-50 w-[40%]" src="/assets/couch-2.fe60adce.png" alt="">
+        <div class="w-full h-[16%] bg-primary-2 absolute bottom-0 left-0"></div>
+
+        <button type="button" @click="nextPage(6)" class="absolute bottom-[5%] right-[5%] w-[20%] drop-shadow-md z-50">
+          <img class="w-full" src="/assets/continue-button.9b67e0da.png" alt="">
+        </button>
+    </section>
+
+    <!-- page 6 - question 1-->
+    <section @keyup.enter="checkAnswer('TUFUVVRJTkE=', 7)" class="flex items-center justify-center bg-primary-1 w-full h-screen" v-if="getPage() == 6">
+      
+      <div class="grid grid-cols-2 w-full h-max">
+        <div class="w-full h-screen flex place-items-center relative">
+          <div class="ml-[20%] -mt-[10%] w-[65%] relative">
+            <img class="w-[97%] h-auto absolute top-[5%] left-[1.5%]" src="/assets/image-3.8c70ffad.gif" alt="">
+            <img class="w-full h-auto" src="/assets/tv-3.32a0541b.png" alt="">
+
+            <input id="answer_field_1" v-model="user_answer" class="focus:bg-primary-2 outline-none mt-[2%] w-[100%] border-[10px] p-[10px] bg-transparent rounded-[20px] border-primary-2 text-[20px] font-tertiary-font uppercase font-bold" type="text">
+
+            <button type="button"  @click="checkAnswer('TUFUVVRJTkE=', 7)" class="mt-[5%] w-[50%] drop-shadow-md">
+          <img class="w-full" src="/assets/answer-button.1cc86561.png" alt="">
+        </button>
+          </div>
+
+          
+        </div>
+
+        <div class="w-full h-screen flex flex-col place-items-center relative">
+          <img class="mt-[10%] mr-[40%] w-[60%]" src="/assets/q2.3a9197f0.svg" alt="">
+        </div>
+      </div>
+      
+        <img class="absolute left-[2%] bottom-[5%] z-50 w-[9%]" src="/assets/plant-6.21003d1c.png" alt="">
+        <img class="absolute right-[5%] top-[5%] z-50 w-[15%]" src="data:image/png;base64,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" alt="">
+        <img class="absolute bottom-[5%] right-[10%] z-50 w-[40%]" src="/assets/couch-3.5b7ee602.png" alt="">
+        <div class="w-full h-[16%] bg-primary-2 absolute bottom-0 left-0"></div>
+
+
     </section>
   </main>
 
 </body>
-<!-- <script type="module" src="./src/scripts/main.js"></script> -->
+
 <!-- development version, includes helpful console warnings -->
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-<script>
-  if(sessionStorage.getItem('page_id') == null) {
-    sessionStorage.setItem('page_id', 0)
-  }
-  const app = new Vue({
-    el: '#app',
-    data: {
-      active_page: 0
-    },
-    methods: {
-      nextPage: function (current_page){
-         sessionStorage.setItem('page_id', current_page);
-         this.active_page = current_page
-      },
-      getPage: function () {
-        this.active_page = parseInt(sessionStorage.getItem('page_id'))
-        return this.active_page
-      }
-    }
-  })
-</script>
+
 </html>

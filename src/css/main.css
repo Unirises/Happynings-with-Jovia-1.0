@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+img {
+  pointer-events: none;
+  user-select: none;
+}
+
+button {
+  @apply transition-all transform scale-100
+}
+
+button:active {
+  @apply scale-95
+}
+
+.notebook-bg  {
+  @apply bg-line bg-fixed bg-center bg-cover;
+}

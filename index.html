@@ -10,39 +10,59 @@
   <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Questrial&family=Sniglet&display=swap" rel="stylesheet">
   <title>Happynings with Jovia 1.0</title>
 </head>
-<body class="transition-all duration-400 flex items-center justify-center min-h-screen h-auto w-full overflow-x-hidden">
+<body class="transition-all duration-400 flex items-center justify-center min-h-screen h-auto w-full overflow-x-hidden overflow-y-hidden bg-white">
+ 
+  <div class="fixed top-0 left-0 w-full lg:hidden h-screen bg-primary-2 z-50 flex items-center justify-center flex-col">
 
-  <main id="app" class="w-full h-screen">
-    <button @click="nextPage(0)" class="bg-red-500 absolute top-0 left-0 z-50">Reset</button>
+  </div>
+  <main id="app" class="w-full h-screen z-40">
+    
+    <p class="absolute bg-black text-white opacity-10">For development only - current page {{ active_page }}</p>
+
+    <button @click="nextPage(0)" class="w-[5%] absolute top-[5%] left-[2%] z-50 drop-shadow-md">
+      <img class="w-full h-auto" src="src/images/home-button.png" alt="">
+    </button>
     <!-- page 0 -->
-    <section class="flex items-center justify-center" v-if="getPage() == 0" @click="nextPage(1)">
+    <section class="flex items-center justify-center notebook-bg" v-if="getPage() == 0">
         <img class="w-[75%] h-auto" src="src/images/page-0.png" alt="">
-        
+        <button  @click="nextPage(1)" class="absolute bottom-[15%] w-[20%] drop-shadow-md">
+          <img class="w-full" src="src/images/start-button.png" alt="">
+        </button>
     </section>
 
     <!-- page 1 -->
-    <section class="flex items-center justify-center" v-if="getPage() == 1" @click="nextPage(2)">
+    <section class="flex items-center justify-center notebook-bg" v-if="getPage() == 1">
        <img class="w-[90%] h-auto" src="src/images/page-1.png" alt="">
+       <button  @click="nextPage(2)" class="absolute drop-shadow-md bottom-[5%] right-[5%] w-[20%]">
+          <img class="w-full" src="src/images/continue-button.png" alt="">
+        </button>
     </section>
 
     <!-- page 2 -->
-    <section class="flex items-center justify-center" v-if="getPage() == 2" @click="nextPage(3)">
+    <section class="flex items-center justify-center notebook-bg" v-if="getPage() == 2">
        <img class="w-[90%] h-auto" src="src/images/page-2.png" alt="">
+
+       <button  @click="nextPage(3)" class="drop-shadow-md absolute bottom-[5%] right-[5%] w-[20%]">
+          <img class="w-full" src="src/images/continue-button.png" alt="">
+        </button>
     </section>
 
     <!-- page 3 -->
-    <section class="flex items-center justify-center bg-primary-1 w-full h-screen" v-if="getPage() == 3" @click="nextPage(4)">
+    <section class="flex items-center justify-center bg-primary-1 w-full h-screen" v-if="getPage() == 3">
        <img class="w-[800px] h-auto" src="src/images/page-3.png" alt="">
+       <button  @click="nextPage(4)" class="drop-shadow-md absolute bottom-[5%] right-[5%] w-[20%]">
+          <img class="w-full" src="src/images/continue-button.png" alt="">
+        </button>
     </section>
 
-    <!-- page 4 -->
-    <section class="flex items-center justify-center bg-primary-1 w-full h-screen" v-if="getPage() == 4" @click="nextPage(4)">
+    <!-- page 4 - question 1-->
+    <section @keyup.enter="checkAnswer('SElSQVlBLU1BTkFXQVJJ', 5)" class="flex items-center justify-center bg-primary-1 w-full h-screen" v-if="getPage() == 4">
       
       <div class="grid grid-cols-2 w-full h-max">
         <div class="w-full h-screen flex place-items-center relative">
           <div class="ml-[20%] -mt-[30%] w-[65%]">
             <img class="w-full h-auto" src="src/images/tv-1.png" alt="">
-            <audio controls class="absolute top-[42%] left-[35%] w-[35%]">
+            <audio controls class="absolute top-[42%] left-[35%] w-[35%] ">
               <source src="src/audio/hiaraya_manwari.mp3" type="audio/mpeg">
               Your browser does not support the audio element.
             </audio>
@@ -51,7 +71,8 @@
 
         <div class="w-full h-screen flex flex-col place-items-center relative">
           <img class=" mt-[10%] w-[60%]" src="src/images/q1.svg" alt="">
-          <input class="mt-[2%] w-[50%] border-[10px] p-[20px] bg-transparent rounded-[20px] border-primary-2 text-[20px] font-tertiary-font" type="text">
+          <input id="answer_field_1" v-model="user_answer" class="focus:bg-primary-2 outline-none mt-[2%] w-[50%] border-[10px] p-[10px] bg-transparent rounded-[20px] border-primary-2 text-[20px] font-tertiary-font uppercase font-bold" type="text">
+          
         </div>
       </div>
       
@@ -59,34 +80,62 @@
         <img class="absolute right-[5%] bottom-[30%] z-50 w-[9%]" src="src/images/plant-3.png" alt="">
         <img class="absolute bottom-[5%] z-50 w-[40%]" src="src/images/couch-1.png" alt="">
         <div class="w-full h-[16%] bg-primary-2 absolute bottom-0 left-0"></div>
+
+        <button type="button"  @click="checkAnswer('SElSQVlBLU1BTkFXQVJJ', 5)" class="absolute bottom-[5%] right-[5%] w-[20%] drop-shadow-md">
+          <img class="w-full" src="src/images/answer-button.png" alt="">
+        </button>
+    </section>
+
+    <!-- page 5 - answer 1 -->
+    <section class="flex items-center justify-center bg-primary-1 w-full h-screen" v-if="getPage() == 5">
+        <iframe class="z-50 w-[33%] h-auto aspect-video absolute top-[12.5%] right-[12.1%]" src="https://drive.google.com/file/d/1O_G-sbQZt1RDLqo3uyi4y__B8u0rQx5F/preview" width="640" height="480" allow="autoplay" frameborder="0"></iframe>
+        <img class="absolute left-[15%] top-[20%] z-50 w-[30%]" src="src/images/a1.svg" alt="">
+        <img class="absolute left-[2%] top-[30%] z-50 w-[9%]" src="src/images/plant-4.png" alt="">
+        <img class="absolute right-[5%] top-[10%] z-40 w-[50%]" src="src/images/tv-2.png" alt="">
+        <img class="absolute left-[10%] bottom-[5%] z-50 w-[40%]" src="src/images/couch-2.png" alt="">
+        <div class="w-full h-[16%] bg-primary-2 absolute bottom-0 left-0"></div>
+
+        <button type="button" @click="nextPage(6)" class="absolute bottom-[5%] right-[5%] w-[20%] drop-shadow-md z-50">
+          <img class="w-full" src="src/images/continue-button.png" alt="">
+        </button>
+    </section>
+
+    <!-- page 6 - question 1-->
+    <section @keyup.enter="checkAnswer('TUFUVVRJTkE=', 7)" class="flex items-center justify-center bg-primary-1 w-full h-screen" v-if="getPage() == 6">
+      
+      <div class="grid grid-cols-2 w-full h-max">
+        <div class="w-full h-screen flex place-items-center relative">
+          <div class="ml-[20%] -mt-[10%] w-[65%] relative">
+            <img class="w-[97%] h-auto absolute top-[5%] left-[1.5%]" src="src/images/image-3.gif" alt="">
+            <img class="w-full h-auto" src="src/images/tv-3.png" alt="">
+
+            <input id="answer_field_1" v-model="user_answer" class="focus:bg-primary-2 outline-none mt-[2%] w-[100%] border-[10px] p-[10px] bg-transparent rounded-[20px] border-primary-2 text-[20px] font-tertiary-font uppercase font-bold" type="text">
+
+            <button type="button"  @click="checkAnswer('TUFUVVRJTkE=', 7)" class="mt-[5%] w-[50%] drop-shadow-md">
+          <img class="w-full" src="src/images/answer-button.png" alt="">
+        </button>
+          </div>
+
+          
+        </div>
+
+        <div class="w-full h-screen flex flex-col place-items-center relative">
+          <img class="mt-[10%] mr-[40%] w-[60%]" src="src/images/q2.svg" alt="">
+        </div>
+      </div>
+      
+        <img class="absolute left-[2%] bottom-[5%] z-50 w-[9%]" src="src/images/plant-6.png" alt="">
+        <img class="absolute right-[5%] top-[5%] z-50 w-[15%]" src="src/images/plant-5.png" alt="">
+        <img class="absolute bottom-[5%] right-[10%] z-50 w-[40%]" src="src/images/couch-3.png" alt="">
+        <div class="w-full h-[16%] bg-primary-2 absolute bottom-0 left-0"></div>
+
+
     </section>
   </main>
 
 </body>
-<!-- <script type="module" src="./src/scripts/main.js"></script> -->
+
 <!-- development version, includes helpful console warnings -->
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-<script>
-  
-  if(sessionStorage.getItem('page_id') == null) {
-    sessionStorage.setItem('page_id', 0)
-  }
-
-  const app = new Vue({
-    el: '#app',
-    data: {
-      active_page: 0
-    },
-    methods: {
-      nextPage: function (current_page){
-         sessionStorage.setItem('page_id', current_page);
-         this.active_page = current_page
-      },
-      getPage: function () {
-        this.active_page = parseInt(sessionStorage.getItem('page_id'))
-        return this.active_page
-      }
-    }
-  })
-</script>
+<script type="module" src="./src/scripts/main.js"></script>
 </html>

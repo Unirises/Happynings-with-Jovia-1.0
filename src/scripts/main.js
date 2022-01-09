@@ -1,55 +1,35 @@
-// Navbar Initialization
-const body = document.body;
-const menuBtn = document.querySelector('#menu-button');
-const menuCloseBtn = document.querySelector('#menu-close-button');
-const menuContent = document.querySelector('#menu-content');
-const linkContainer = document.querySelectorAll('#link-container > li > a');
-const navbar = document.querySelector('nav');
+  if (sessionStorage.getItem('page_id') == null) {
+      sessionStorage.setItem('page_id', 0)
+  }
 
-const closeMobileMenu = () => {
-    menuContent.classList.add(
-        'opacity-0',
-        'pointer-events-none',
-        'lg:opacity-0'
-    );
-    body.classList.remove('overflow-y-hidden');
-};
+  const app = new Vue({
+      el: '#app',
+      data: {
+          active_page: 0,
+          user_answer: ''
+      },
+      methods: {
+          nextPage: function (current_page) {
+              sessionStorage.setItem('page_id', current_page);
+              this.active_page = current_page
+          },
+          getPage: function () {
+              this.active_page = parseInt(sessionStorage.getItem('page_id'))
+              return this.active_page
+          },
+          checkAnswer: function (answer, page_id) {
+              if (answer === btoa(this.user_answer.toUpperCase())) {
+                  this.nextPage(page_id)
+                  this.user_answer = ''
+              }
 
-linkContainer.forEach((link) => {
-    link.addEventListener('click', () => {
-        closeMobileMenu();
-    });
-});
-
-menuBtn.addEventListener('click', () => {
-    menuContent.classList.remove('opacity-0', 'pointer-events-none');
-    body.classList.add('overflow-y-hidden');
-});
-
-menuCloseBtn.addEventListener('click', () => {
-    closeMobileMenu();
-});
-
-let prevScrollpos = window.pageYOffset;
-window.addEventListener('scroll', () => {
-    let currentScrollPos = window.pageYOffset;
-
-    if (currentScrollPos <= 80) {
-        navbar.classList.remove('shadow-xl');
-    } else if (prevScrollpos > currentScrollPos) {
-        navbar.classList.replace('-top-20', 'top-0');
-        navbar.classList.add('shadow-xl');
-    } else {
-        navbar.classList.replace('top-0', '-top-20');
-    }
-
-    prevScrollpos = currentScrollPos;
-});
-
-window.addEventListener('load', () => {
-    let currentScrollPos = window.pageYOffset;
-    if (currentScrollPos >= 80) {
-        navbar.classList.replace('-top-20', 'top-0');
-        navbar.classList.add('shadow-xl');
-    }
-});
+              const answer_field = document.querySelector('#answer_field_1');
+              answer_field.classList.replace('border-primary-2', 'border-red-500')
+              answer_field.classList.add('animate-pulse')
+              setTimeout(() => {
+                  answer_field.classList.remove('animate-pulse')
+                  answer_field.classList.replace('border-red-500', 'border-primary-2')
+              }, 1000)
+          }
+      }
+  })

@@ -1,5 +1,5 @@
 module.exports = {
-  content: ["./src/**/*.{html,js}", "*.html"],
+  content: ["./src/**/*.js", "*.html"],
   theme: {
     extend: {
       colors: {
@@ -13,6 +13,9 @@ module.exports = {
         "primary-font": "'Gochi Hand', cursive;",
         "secondary-font": "'Questrial', sans-serif",
         "tertiary-font" : "'Sniglet', cursive"
+      },
+      backgroundImage: {
+        'line': "url('/src/images/background.png')"
       }
     },
   },
