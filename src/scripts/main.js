@@ -3,7 +3,8 @@ if (sessionStorage.getItem('page_id') == null) {
 }
 
 function getImageUrl(name) {
-  return new URL(`../images/${name}.png`, import.meta.url).href
+    return new URL(`../images/${name}.png`,
+        import.meta.url).href
 }
 
 const app = new Vue({
@@ -16,7 +17,8 @@ const app = new Vue({
         answer_2: ['Wm9yYXlkYQ==', 'TWF0dXRpbmE='],
         answer_3: ['QW5nIFBhZ29uZyBhdCBhbmcgTWF0c2luZyBieSBKUCBSaXphbA==', 'RmxvcmFudGUgYXQgTGF1cmE=', 'YW5nIFBhZ29uZyBhdCBhbmcgTWF0c2luZw==', 'UGFnb25nIGF0IE1hdHNpbmc='],
         answer_4: ['aG95IGdpc2luZw==', 'TWFnYW5kYW5nIEdhYmkgQmF5YW4='],
-        answer_5: ['eWVsbG93']
+        answer_5: ['eWVsbG93'],
+        is_answer_correct: true
     },
     methods: {
         nextPage: function (current_page) {
@@ -28,12 +30,23 @@ const app = new Vue({
             return this.active_page
         },
         checkAnswer: function (answers, page_id) {
-            answers.forEach(answer => {
-                if (atob(answer).toUpperCase() == this.user_answer.toUpperCase()) {
-                    this.nextPage(page_id)
-                    this.user_answer = ''
-                }
 
+            for (let i = 0; i < answers.length; i++) {
+                const answer = answers[i];
+                if (atob(answer).toUpperCase() == this.user_answer.toUpperCase()) {
+                    this.is_answer_correct = true;
+                    break;
+                } else {
+                    this.is_answer_correct = false
+                }
+            }
+
+            if (this.is_answer_correct) {
+                this.nextPage(page_id)
+                this.user_answer = ''
+                document.querySelector('#correct').play()
+            } else {
+                document.querySelector('#wrong').play()
                 const answer_field = document.querySelector('#answer_field');
                 answer_field.classList.replace('border-primary-2', 'border-red-500')
                 answer_field.classList.add('animate-pulse')
@@ -41,7 +54,7 @@ const app = new Vue({
                     answer_field.classList.remove('animate-pulse')
                     answer_field.classList.replace('border-red-500', 'border-primary-2')
                 }, 1000)
-            });
+            }
         },
         soundStatus: function () {
             this.sound_status = !this.sound_status;
@@ -51,6 +64,7 @@ const app = new Vue({
             if (this.sound_status) {
                 music.play()
                 sound_status.src = getImageUrl('sound-on')
+
             } else {
                 music.pause()
                 sound_status.src = getImageUrl('sound-off')

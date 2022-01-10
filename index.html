@@ -17,11 +17,6 @@
     <h2 class="text-black text-[4rem] font-tertiary-font animate-pulse font-bold uppercase">Loading...</h2>
   </div>
 
-  <!-- bg music -->
-  <audio id="music" loop="loop">
-    <source src="./src/audio/background_music.mp3" type="audio/mpeg">
-  </audio>
-
   <!-- desktop only -->
   <div class="fixed top-0 left-0 w-full lg:hidden h-screen bg-primary-2 z-50 flex items-center justify-center flex-col text-center">
     <h2 class="text-black text-[2rem] font-tertiary-font">USE A COMPUTER FOR BETTER EXPERIENCE</h2>
@@ -300,15 +295,30 @@
         <img class="absolute right-[2%] top-[10%] z-50 w-[10%]" src="src/images/plant-10.png" alt="">
         <img class="absolute bottom-[5%] left-[50%] transform translate-x-[-50%] z-50 w-[60%]" src="src/images/tv-9.png" alt="">
         <div class="w-full h-[16%] bg-primary-2 absolute bottom-0 left-0"></div>  
+        <audio autoplay loop>
+        <source src="./src/audio/confetti.mp3" type="audio/mpeg">
+      </audio>
     </section>
   </main>
 
+  <!-- bg music -->
+  <audio id="music" loop="loop">
+    <source src="./src/audio/background_music.mp3" type="audio/mpeg">
+  </audio>
+
+  <audio id="correct">
+    <source src="./src/audio/correct_answer.mp3" type="audio/mpeg">
+  </audio>
+
+   <audio id="wrong">
+    <source src="./src/audio/wrong_answer.wav" type="audio/mpeg">
+  </audio>
 </body>
 
 <script type="module" src="./src/scripts/main.js"></script>
 <script>
   window.addEventListener("load", function () {
-      document.querySelector('#page-loading').classList.add('hidden')
-    })
+    document.querySelector('#page-loading').classList.add('hidden')
+  })
 </script>
 </html>
