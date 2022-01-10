@@ -7,21 +7,41 @@
   <link rel="stylesheet" href="./src/css/main.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Questrial&family=Sniglet&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sniglet&display=swap" rel="stylesheet">
   <title>Happynings with Jovia 1.0</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 </head>
 <body class="transition-all duration-400 flex items-center justify-center min-h-screen h-auto w-full overflow-x-hidden overflow-y-hidden bg-white">
- 
+  <!-- loading -->
+  <div id="page-loading" class="fixed top-0 left-0 w-full h-screen bg-primary-2 z-50 flex items-center justify-center flex-col text-center">
+    <h2 class="text-black text-[4rem] font-tertiary-font animate-pulse font-bold uppercase">Loading...</h2>
+  </div>
+
+  <!-- bg music -->
+  <audio id="music" loop="loop">
+    <source src="./src/audio/background_music.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- desktop only -->
   <div class="fixed top-0 left-0 w-full lg:hidden h-screen bg-primary-2 z-50 flex items-center justify-center flex-col text-center">
     <h2 class="text-black text-[2rem] font-tertiary-font">USE A COMPUTER FOR BETTER EXPERIENCE</h2>
   </div>
+
   <main id="app" class="w-full h-screen z-40">
     
-    <p class="absolute bg-black text-white opacity-10">For development only - current page {{ active_page }}</p>
+    <p class="absolute bg-black text-white opacity-40">For development only - current page {{ active_page }}</p>
 
-    <button @click="nextPage(0)" class="w-[5%] absolute top-[5%] left-[2%] z-50 drop-shadow-md">
-      <img class="w-full h-auto" src="src/images/home-button.png" alt="">
-    </button>
+    <!-- menu -->
+    <div class="w-[30%] absolute top-[5%] left-[2%] z-50 flex flex-col">
+      <button @click="nextPage(0)" class="w-[15%] drop-shadow-md mb-[5%]">
+        <img class="w-full h-auto" src="src/images/home-button.png" alt="">
+      </button>
+
+      <button @click="soundStatus()" class="w-[15%] drop-shadow-md">
+        <img id="soundStatus" class="w-[100%] h-auto" src="src/images/sound-off.png" alt="">
+      </button>
+    </div>
+    
     <!-- page 0 -->
     <section class="flex items-center justify-center notebook-bg" v-if="getPage() == 0">
         <img class="w-[75%] h-auto" src="src/images/page-0.png" alt="">
@@ -56,14 +76,14 @@
     </section>
 
     <!-- page 4 - question 1-->
-    <section @keyup.enter="checkAnswer('SElSQVlBLU1BTkFXQVJJ', 5)" class="flex items-center justify-center bg-primary-1 w-full h-screen" v-if="getPage() == 4">
+    <section @keyup.enter="checkAnswer(answer_1, 5)" class="flex items-center justify-center bg-primary-1 w-full h-screen" v-if="getPage() == 4">
       
       <div class="grid grid-cols-2 w-full h-max">
         <div class="w-full h-screen flex place-items-center relative">
           <div class="ml-[20%] -mt-[30%] w-[65%]">
             <img class="w-full h-auto" src="src/images/tv-1.png" alt="">
-            <audio controls class="absolute top-[42%] left-[35%] w-[35%] ">
-              <source src="src/audio/hiaraya_manwari.mp3" type="audio/mpeg">
+            <audio id="music-trigger" controls class="block z-50 absolute top-[42%] left-[35%] w-[35%] ">
+              <source src="./src/audio/hiaraya_manwari.mp3" type="audio/mpeg">
               Your browser does not support the audio element.
             </audio>
           </div>
@@ -71,7 +91,7 @@
 
         <div class="w-full h-screen flex flex-col place-items-center relative">
           <img class=" mt-[10%] w-[60%]" src="src/images/q1.svg" alt="">
-          <input id="answer_field_1" v-model="user_answer" class="focus:bg-primary-2 outline-none mt-[2%] w-[50%] border-[10px] p-[10px] bg-transparent rounded-[20px] border-primary-2 text-[20px] font-tertiary-font uppercase font-bold" type="text">
+          <input id="answer_field" v-model="user_answer" class="focus:bg-primary-2 outline-none mt-[2%] w-[50%] border-[10px] p-[10px] bg-transparent rounded-[20px] border-primary-2 text-[20px] font-tertiary-font uppercase font-bold" type="text">
           
         </div>
       </div>
@@ -81,14 +101,14 @@
         <img class="absolute bottom-[5%] z-50 w-[40%]" src="src/images/couch-1.png" alt="">
         <div class="w-full h-[16%] bg-primary-2 absolute bottom-0 left-0"></div>
 
-        <button type="button"  @click="checkAnswer('SElSQVlBLU1BTkFXQVJJ', 5)" class="absolute bottom-[5%] right-[5%] w-[20%] drop-shadow-md">
+        <button type="button"  @click="checkAnswer(answer_1, 5)" class="absolute bottom-[5%] right-[5%] w-[20%] drop-shadow-md">
           <img class="w-full" src="src/images/answer-button.png" alt="">
         </button>
     </section>
 
     <!-- page 5 - answer 1 -->
     <section class="flex items-center justify-center bg-primary-1 w-full h-screen" v-if="getPage() == 5">
-        <iframe class="z-50 w-[33%] h-auto aspect-video absolute top-[12.5%] right-[12.1%]" src="https://drive.google.com/file/d/1O_G-sbQZt1RDLqo3uyi4y__B8u0rQx5F/preview" width="640" height="480" allow="autoplay" frameborder="0"></iframe>
+        <iframe class="z-50 w-[33%] h-auto aspect-video absolute top-[12.5%] right-[12.1%]" src="https://drive.google.com/file/d/1O_G-sbQZt1RDLqo3uyi4y__B8u0rQx5F/preview" allow="autoplay" frameborder="0"></iframe>
         <img class="absolute left-[15%] top-[20%] z-50 w-[30%]" src="src/images/a1.svg" alt="">
         <img class="absolute left-[2%] top-[30%] z-50 w-[9%]" src="src/images/plant-4.png" alt="">
         <img class="absolute right-[5%] top-[10%] z-40 w-[50%]" src="src/images/tv-2.png" alt="">
@@ -100,8 +120,8 @@
         </button>
     </section>
 
-    <!-- page 6 - question 1-->
-    <section @keyup.enter="checkAnswer('TUFUVVRJTkE=', 7)" class="flex items-center justify-center bg-primary-1 w-full h-screen" v-if="getPage() == 6">
+    <!-- page 6 - question 2 -->
+    <section @keyup.enter="checkAnswer(answer_2, 7)" class="flex items-center justify-center bg-primary-1 w-full h-screen" v-if="getPage() == 6">
       
       <div class="grid grid-cols-2 w-full h-max">
         <div class="w-full h-screen flex place-items-center relative">
@@ -109,9 +129,9 @@
             <img class="w-[97%] h-auto absolute top-[5%] left-[1.5%]" src="src/images/image-3.gif" alt="">
             <img class="w-full h-auto" src="src/images/tv-3.png" alt="">
 
-            <input id="answer_field_1" v-model="user_answer" class="focus:bg-primary-2 outline-none mt-[2%] w-[100%] border-[10px] p-[10px] bg-transparent rounded-[20px] border-primary-2 text-[20px] font-tertiary-font uppercase font-bold" type="text">
+            <input id="answer_field" v-model="user_answer" class="focus:bg-primary-2 outline-none mt-[2%] w-[100%] border-[10px] p-[10px] bg-transparent rounded-[20px] border-primary-2 text-[20px] font-tertiary-font uppercase font-bold" type="text">
 
-            <button type="button"  @click="checkAnswer('TUFUVVRJTkE=', 7)" class="mt-[5%] w-[50%] drop-shadow-md">
+            <button type="button"  @click="checkAnswer(answer_2, 7)" class="mt-[5%] w-[50%] drop-shadow-md">
           <img class="w-full" src="src/images/answer-button.png" alt="">
         </button>
           </div>
@@ -131,11 +151,164 @@
 
 
     </section>
+
+     <!-- page 7 - answer 2 -->
+    <section class="flex items-center justify-center bg-primary-1 w-full h-screen" v-if="getPage() == 7">
+        <img class="absolute right-[15%] top-[10%] z-50 w-[30%]" src="src/images/a2.svg" alt="">
+        <img class="absolute right-[2%] bottom-[25%] z-50 w-[9%]" src="src/images/plant-7.png" alt="">
+        <img class="absolute left-[12%] top-[11.5%] z-50 w-[30%]" src="src/images/image-4.gif" alt="">
+        <img class="absolute left-[10%] bottom-[27%] z-40 w-[35%]" src="src/images/tv-4.png" alt="">
+        <img class="absolute right-[30%] bottom-[5%] z-50 w-[35%]" src="src/images/couch-4.png" alt="">
+        <div class="w-full h-[30%] bg-primary-2 absolute bottom-0 left-0"></div>
+
+        <button type="button" @click="nextPage(8)" class="absolute bottom-[5%] right-[5%] w-[20%] drop-shadow-md z-50">
+          <img class="w-full" src="src/images/continue-button.png" alt="">
+        </button>     
+    </section>
+
+    <!-- page 8 - question 3 -->
+    <section @keyup.enter="checkAnswer(answer_3, 9)" class="flex items-center justify-center bg-primary-1 w-full h-screen" v-if="getPage() == 8">
+        
+      <div class="grid grid-cols-2 w-full h-max">
+        <div class="w-full h-screen flex place-items-center relative">
+          <div class="ml-[20%] -mt-[30%] w-[65%]">
+            <img class="w-full h-auto" src="src/images/tv-1.png" alt="">
+          
+            <iframe class="absolute top-[16%] left-[22.5%] w-[59%] h-auto aspect-video" src="https://www.youtube.com/embed/ZMXK7z7eV38?start=20" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+
+        <div class="w-full h-screen flex flex-col place-items-center relative">
+          <img class=" mt-[10%] w-[60%]" src="src/images/q3.svg" alt="">
+          <input id="answer_field" v-model="user_answer" class="focus:bg-primary-2 outline-none mt-[2%] w-[50%] border-[10px] p-[10px] bg-transparent rounded-[20px] border-primary-2 text-[20px] font-tertiary-font uppercase font-bold" type="text">
+          
+        </div>
+      </div>
+      
+         <img class="absolute left-[5%] bottom-[5%] z-50 w-[9%]" src="src/images/plant-1.png" alt="">
+        <img class="absolute right-[5%] bottom-[30%] z-50 w-[9%]" src="src/images/plant-3.png" alt="">
+        <img class="absolute bottom-[5%] z-50 w-[40%]" src="src/images/couch-1.png" alt="">
+        <div class="w-full h-[16%] bg-primary-2 absolute bottom-0 left-0"></div>
+
+        <button type="button" @click="checkAnswer(answer_3, 9)" class="absolute bottom-[5%] right-[5%] w-[20%] drop-shadow-md">
+          <img class="w-full" src="src/images/answer-button.png" alt="">
+        </button>
+    </section>
+
+    <!-- page 9 - answer 3 -->
+    <section class="flex items-center justify-center bg-primary-1 w-full h-screen" v-if="getPage() == 9">
+       
+        <img class="absolute left-[15%] top-[15%] z-50 w-[30%]" src="src/images/a3.svg" alt="">
+        <img class="absolute left-[2%] top-[30%] z-50 w-[9%]" src="src/images/plant-4.png" alt="">
+        <img class="absolute right-[5%] top-[10%] z-40 w-[50%]" src="src/images/tv-5.png" alt="">
+        <img class="absolute left-[10%] bottom-[5%] z-50 w-[40%]" src="src/images/couch-2.png" alt="">
+        <div class="w-full h-[16%] bg-primary-2 absolute bottom-0 left-0"></div>
+
+        <button type="button" @click="nextPage(10)" class="absolute bottom-[5%] right-[5%] w-[20%] drop-shadow-md z-50">
+          <img class="w-full" src="src/images/continue-button.png" alt="">
+        </button>
+    </section>
+
+    <!-- page 10 - question 4 -->
+    <section @keyup.enter="checkAnswer(answer_4, 11)" class="flex items-center justify-center bg-primary-1 w-full h-screen" v-if="getPage() == 10">
+      
+      <div class="grid grid-cols-2 w-full h-max">
+        <div class="w-full h-screen flex place-items-center relative">
+          <div class="ml-[20%] -mt-[10%] w-[65%] relative">
+            <img class="w-[50%] h-[32%] aspect-video absolute top-[6%] left-[8%] z-50" src="src/images/image-6.gif" alt="">
+            <img class="w-[97%] h-auto rounded-xl absolute top-[0.5%] left-[2%]" src="src/images/image-5.png" alt="">
+            <img class="w-full h-auto" src="src/images/tv-3.png" alt="">
+
+            <input id="answer_field" v-model="user_answer" class="focus:bg-primary-2 outline-none mt-[2%] w-[100%] border-[10px] p-[10px] bg-transparent rounded-[20px] border-primary-2 text-[20px] font-tertiary-font uppercase font-bold" type="text">
+
+            <button type="button"  @click="checkAnswer(answer_4, 11)" class="mt-[5%] w-[50%] drop-shadow-md">
+              <img class="w-full" src="src/images/answer-button.png" alt="">
+            </button>
+          </div>
+
+          
+        </div>
+
+        <div class="w-full h-screen flex flex-col place-items-center relative">
+          <img class="mt-[10%] mr-[40%] w-[60%]" src="src/images/q4.svg" alt="">
+        </div>
+      </div>
+      
+        <img class="absolute left-[2%] bottom-[5%] z-50 w-[9%]" src="src/images/plant-6.png" alt="">
+        <img class="absolute right-[5%] top-[5%] z-50 w-[15%]" src="src/images/plant-5.png" alt="">
+        <img class="absolute bottom-[5%] right-[10%] z-50 w-[40%]" src="src/images/couch-3.png" alt="">
+        <div class="w-full h-[16%] bg-primary-2 absolute bottom-0 left-0"></div>
+
+
+    </section>
+
+     <!-- page 11 - answer 2 -->
+    <section class="flex items-center justify-center bg-primary-1 w-full h-screen" v-if="getPage() == 11">
+        <img class="absolute right-[15%] top-[10%] z-50 w-[40%]" src="src/images/a4.svg" alt="">
+        <img class="absolute right-[2%] bottom-[25%] z-50 w-[9%]" src="src/images/plant-7.png" alt="">
+        <img class="absolute left-[10%] bottom-[27%] z-40 w-[35%]" src="src/images/tv-6.png" alt="">
+        <img class="absolute right-[30%] bottom-[5%] z-50 w-[35%]" src="src/images/couch-4.png" alt="">
+        <div class="w-full h-[30%] bg-primary-2 absolute bottom-0 left-0"></div>
+
+        <button type="button" @click="nextPage(12)" class="absolute bottom-[5%] right-[5%] w-[20%] drop-shadow-md z-50">
+          <img class="w-full" src="src/images/continue-button.png" alt="">
+        </button>     
+    </section>
+
+    <!-- page 12 - question 5 -->
+    <section @keyup.enter="checkAnswer(answer_5, 13)" class="flex items-center justify-center bg-primary-1 w-full h-screen" v-if="getPage() == 12">
+      
+      <div class="grid grid-cols-2 w-full h-max">
+        <div class="w-full h-screen flex flex-col place-items-center relative">
+          <img class="absolute top-[10%] left-[40%] w-[65%]" src="src/images/q5.svg" alt="">
+        </div>
+
+        <div class="w-full h-screen flex place-items-center relative">
+          <div class="ml-[20%] -mt-[10%] w-[65%] relative">
+
+            <img class="w-[97%] aspect-video h-auto rounded-xl absolute top-[2.5%] left-[2%]" src="src/images/image-7.gif" alt="">
+            <img class="w-full h-auto" src="src/images/tv-7.png" alt="">
+
+            <input id="answer_field" v-model="user_answer" class="focus:bg-primary-2 outline-none mt-[2%] w-[100%] border-[10px] p-[10px] bg-transparent rounded-[20px] border-primary-2 text-[20px] font-tertiary-font uppercase font-bold" type="text">
+
+            <button type="button"  @click="checkAnswer(answer_5, 13)" class="mt-[5%] w-[50%] drop-shadow-md">
+              <img class="w-full" src="src/images/answer-button.png" alt="">
+            </button>
+          </div>
+          
+        </div>
+      </div>
+      
+        <img class="absolute left-[2%] top-[30%] z-50 w-[9%]" src="src/images/plant-8.png" alt="">
+        <img class="absolute bottom-[5%] left-[10%] z-50 w-[20%]" src="src/images/couch-5.png" alt="">
+        <div class="w-full h-[16%] bg-primary-2 absolute bottom-0 left-0"></div>
+
+    </section>
+
+    <!-- page 13 - answer 5 -->
+    <section class="flex items-center justify-center bg-primary-1 w-full h-screen" v-if="getPage() == 13">
+        <img class="absolute left-[2%] top-[30%] z-50 w-[15%]" src="src/images/plant-9.png" alt="">
+        <img class="absolute bottom-[5%] left-[50%] transform translate-x-[-50%] z-50 w-[45%]" src="src/images/tv-8.png" alt="">
+        <div class="w-full h-[16%] bg-primary-2 absolute bottom-0 left-0"></div>
+      <button type="button" @click="nextPage(14)" class="absolute bottom-[5%] right-[5%] w-[20%] drop-shadow-md z-50">
+          <img class="w-full" src="src/images/continue-button.png" alt="">
+        </button>   
+    </section>
+
+    <!-- page 14  -->
+    <section class="flex items-center justify-center bg-primary-1 w-full h-screen" v-if="getPage() == 14">
+        <img class="absolute right-[2%] top-[10%] z-50 w-[10%]" src="src/images/plant-10.png" alt="">
+        <img class="absolute bottom-[5%] left-[50%] transform translate-x-[-50%] z-50 w-[60%]" src="src/images/tv-9.png" alt="">
+        <div class="w-full h-[16%] bg-primary-2 absolute bottom-0 left-0"></div>  
+    </section>
   </main>
 
 </body>
 
-<!-- development version, includes helpful console warnings -->
-<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 <script type="module" src="./src/scripts/main.js"></script>
+<script>
+  window.addEventListener("load", function () {
+      document.querySelector('#page-loading').classList.add('hidden')
+    })
+</script>
 </html>
