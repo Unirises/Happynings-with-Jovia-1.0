@@ -16,7 +16,7 @@ const app = new Vue({
         answer_1: ['SElSQVlBIE1BTkFXQVJJ', 'SElSQU1BWUFOQQ=='],
         answer_2: ['Wm9yYXlkYQ==', 'TWF0dXRpbmE='],
         answer_3: ['QW5nIFBhZ29uZyBhdCBhbmcgTWF0c2luZyBieSBKUCBSaXphbA==', 'RmxvcmFudGUgYXQgTGF1cmE=', 'YW5nIFBhZ29uZyBhdCBhbmcgTWF0c2luZw==', 'UGFnb25nIGF0IE1hdHNpbmc='],
-        answer_4: ['aG95IGdpc2luZw==', 'TWFnYW5kYW5nIEdhYmkgQmF5YW4='],
+        answer_4: ['aG95IGdpc2luZw==', 'TWFnYW5kYW5nIEdhYmkgQmF5YW4=', 'bWFnYW5kYW5nIGdhYmkgYmF5YW4h', 'aG95IGdpc2luZyE='],
         answer_5: ['eWVsbG93'],
         is_answer_correct: true
     },
