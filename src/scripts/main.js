@@ -13,11 +13,11 @@ const app = new Vue({
         active_page: 0,
         user_answer: '',
         sound_status: false,
-        answer_1: ['SElSQVlBIE1BTkFXQVJJ', 'SElSQU1BWUFOQQ=='],
-        answer_2: ['Wm9yYXlkYQ==', 'TWF0dXRpbmE='],
-        answer_3: ['QW5nIFBhZ29uZyBhdCBhbmcgTWF0c2luZyBieSBKUCBSaXphbA==', 'RmxvcmFudGUgYXQgTGF1cmE=', 'YW5nIFBhZ29uZyBhdCBhbmcgTWF0c2luZw==', 'UGFnb25nIGF0IE1hdHNpbmc='],
-        answer_4: ['aG95IGdpc2luZw==', 'TWFnYW5kYW5nIEdhYmkgQmF5YW4=', 'bWFnYW5kYW5nIGdhYmkgYmF5YW4h', 'aG95IGdpc2luZyE='],
-        answer_5: ['eWVsbG93'],
+        answer_1: ['Hiraya Manawari'],
+        answer_2: ['Matutina'],
+        answer_3: ['Ang pagong at ang matsing'], //removed
+        answer_4: ['Magandang Gabi Bayan', 'Magandang Gabi Bayan!'],
+        answer_5: ['Yellow'],
         is_answer_correct: true
     },
     methods: {
@@ -33,7 +33,7 @@ const app = new Vue({
 
             for (let i = 0; i < answers.length; i++) {
                 const answer = answers[i];
-                if (atob(answer).toUpperCase() == this.user_answer.toUpperCase()) {
+                if (answer.toUpperCase() == this.user_answer.toUpperCase()) {
                     this.is_answer_correct = true;
                     break;
                 } else {
