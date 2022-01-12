@@ -147,14 +147,28 @@
 
      <!-- page 7 - answer 2 -->
     <section class="flex items-center justify-center bg-primary-1 w-full h-screen" v-if="getPage() == 7">
-        <img class="absolute right-[15%] top-[10%] z-50 w-[30%]" src="src/images/a2.svg" alt="">
+      <div class="grid grid-cols-2 w-full h-max">
+        <div class="w-full h-screen flex place-items-center relative z-50">
+          <div class="ml-[20%] -mt-[10%] w-[65%] relative">
+            <!-- <img class="w-[97%] h-auto absolute top-[5%] left-[1.5%]" src="src/images/image-3.gif" alt=""> -->
+            <img class="w-[92%] h-auto absolute top-[1%] left-[4.3%] aspect-video" src="src/images/image-4.gif" alt="">
+            <img class="w-full h-auto" src="src/images/tv-4.png" alt="">
+          </div>
+
+          
+        </div>
+
+        <div class="w-full h-screen flex flex-col place-items-center relative">
+          <img class="mt-[10%] mr-[40%] w-[60%]" src="src/images/a2.svg" alt="">
+        </div>
+      </div>
+        <!-- <img class="absolute right-[15%] top-[10%] z-50 w-[30%]" src="src/images/a2.svg" alt=""> -->
         <img class="absolute right-[2%] bottom-[25%] z-50 w-[9%]" src="src/images/plant-7.png" alt="">
-        <img class="absolute left-[12%] top-[11.5%] z-50 w-[30%]" src="src/images/image-4.gif" alt="">
-        <img class="absolute left-[10%] bottom-[27%] z-40 w-[35%]" src="src/images/tv-4.png" alt="">
+        
         <img class="absolute right-[30%] bottom-[5%] z-50 w-[35%]" src="src/images/couch-4.png" alt="">
         <div class="w-full h-[30%] bg-primary-2 absolute bottom-0 left-0"></div>
 
-        <button type="button" @click="nextPage(8)" class="absolute bottom-[5%] right-[5%] w-[20%] drop-shadow-md z-50">
+        <button type="button" @click="nextPage(10 )" class="absolute bottom-[5%] right-[5%] w-[20%] drop-shadow-md z-50">
           <img class="w-full" src="src/images/continue-button.png" alt="">
         </button>     
     </section>
@@ -294,10 +308,10 @@
         <img class="absolute bottom-[5%] left-[50%] transform translate-x-[-50%] z-50 w-[60%]" src="src/images/tv-9.png" alt="">
         <div class="w-full h-[16%] bg-primary-2 absolute bottom-0 left-0"></div>  
         <button type="button" @click="nextPage(15)" class="absolute bottom-[5%] right-[5%] w-[20%] drop-shadow-md z-50">
-          <img class="w-full" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbMAAACNCAMAAAAKNGTcAAABBVBMVEUAAAH///////////////////////////////////////////////////////////////////////////8AAAAQDQQQDQUfGgkfGgovJw4vJw8/NBNPQRhPQhheTh1fTh1fTx1uWyJ+aCd+aSeOdSyOdiyOdiudgjGegjGegzGdgzCtjzWtjzatkDW9nDq9nDu9nTrNqT/Nqj/ct0Tdt0TsxEn80U781Fn91Fn912T812T92W/92m/82m/93Hr93Xr934X94IX94pD95Zv+5Zv95Zz96Kb+6Kb96Kf+6rH+67H967H967L+6rL+7bz+7rz+7r3+7b3+89P+9NP/+en//PT////On6E6AAAAFHRSTlMA79/Pv7CvoJ+Qj4B/cG9gUEAgEMiMhLkAAAi5SURBVHja7NaFrSwxDIVhDyxz0sQj8crzLjMznf5LuZgsg3A90vla+BPbMp/vd+pZCtqUNK+2Bl7W5ts5yIK842QdAwazJB+UrxilfVnGsZhFdScLdROQRWlP5vNNkFXN+ckykF2ZkxkuBVmWutIlo9TLpAxTXq6PtgqlzSh2j85fMCWbjNbEhLcL5tq87ePXJYdIb7LYqZINU9U6i5bZdaFkxfYDxiROgjrG8JPZcoIxufzoY+TtQMmWnTeMDORbipE9JWv2Zz/awPhgpJOZj5YjelSy6HrqozlEr9tKFhVviLyIdBAdK5mfjq2J0fiqZNXb+HD0ZfhmdI7IywDRtpJVBaK+tBC8KNn1jKAjVQTnSnbdIKhLjuBQya5DBJmkCHaV7NpGkAqiQsmuApEgUrKMzdiM2IzYjM2IzYjN2IzYjNiMzYjNyHYzYjNiMzYjNiM2G/779WvIZmXxzr6VaLcJA8GfWIxgHYMUTLBzEZD4/0/rgQlMVmDl1T3Ul3lXD3lCZ/ZiK7sXzTv6jp398uzzeKt0WeqnP6edbUa/RlRfnn0SzryrV9ibcytih9lVlfmOAGYYXox5cIGE+bWDZl9F6lm4YzOUuyl5r+g79pfceqnm5AI8D0zfweGEW+jyzdSN37NeiZC/IcxI+joMrgC3AHdDQz/hwgnX0Y89cpML837PTzF51oGS67Hu3hpdcq4Us66kYm5l+KtHUj0MBfmQZGX9bN+t6IIJr9tq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" alt="">
+          <img class="w-full" src="src/images/claim.png" alt="">
         </button>
-        <audio autoplay loop>
-        <source src="./src/audio/confetti.mp3" type="audio/mpeg">
+        <audio autoplay>
+        <source src="./src/audio/cheer.wav" type="audio/mpeg">
       </audio>
     </section>
     
