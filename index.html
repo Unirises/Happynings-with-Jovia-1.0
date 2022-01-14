@@ -94,9 +94,16 @@
         <img class="absolute bottom-[5%] z-50 w-[40%]" src="src/images/couch-1.png" alt="">
         <div class="w-full h-[16%] bg-primary-2 absolute bottom-0 left-0"></div>
 
-        <button type="button"  @click="checkAnswer(answer_1, 5)" class="absolute bottom-[5%] right-[5%] w-[20%] drop-shadow-md">
-          <img class="w-full" src="src/images/answer-button.png" alt="">
-        </button>
+        <div class="absolute bottom-[5%] right-[5%] flex justify-end">
+          <button type="button"  @click="checkAnswer(answer_1, 5)" class="w-[40%]  mr-[2%] drop-shadow-md">
+            <img class="w-full" src="src/images/answer-button.png" alt="">
+          </button>
+
+          <button type="button"  @click="skipPage(5)" class="w-[14%] h-auto drop-shadow-md">
+            <img class="w-full" src="src/images/skip-button-1.png" alt="">
+          </button>
+        </div>
+        
     </section>
 
     <!-- page 5 - answer 1 -->
@@ -124,9 +131,17 @@
 
             <input id="answer_field" v-model="user_answer" class="focus:bg-primary-2 outline-none mt-[2%] w-[100%] border-[10px] p-[10px] bg-transparent rounded-[20px] border-primary-2 text-[20px] font-tertiary-font uppercase font-bold" type="text">
 
-            <button type="button"  @click="checkAnswer(answer_2, 7)" class="mt-[5%] w-[50%] drop-shadow-md">
-          <img class="w-full" src="src/images/answer-button.png" alt="">
-        </button>
+
+
+            <div class="mt-[5%] w-[100%]">
+              <button type="button"  @click="checkAnswer(answer_2, 7)" class="w-[50%]  mr-[2%] drop-shadow-md">
+                <img class="w-full" src="src/images/answer-button.png" alt="">
+              </button>
+
+              <button type="button"  @click="skipPage(7)" class="w-[17%] h-auto drop-shadow-md">
+                <img class="w-full" src="src/images/skip-button-1.png" alt="">
+              </button>
+            </div>
           </div>
 
           
@@ -148,7 +163,7 @@
      <!-- page 7 - answer 2 -->
     <section class="flex items-center justify-center bg-primary-1 w-full h-screen" v-if="getPage() == 7">
       <div class="grid grid-cols-2 w-full h-max">
-        <div class="w-full h-screen flex place-items-center relative z-50">
+        <div class="w-full h-screen flex place-items-center relative z-40">
           <div class="ml-[20%] -mt-[10%] w-[65%] relative">
             <!-- <img class="w-[97%] h-auto absolute top-[5%] left-[1.5%]" src="src/images/image-3.gif" alt=""> -->
             <img class="w-[92%] h-auto absolute top-[1%] left-[4.3%] aspect-video" src="src/images/image-4.gif" alt="">
@@ -197,9 +212,19 @@
         <img class="absolute bottom-[5%] z-50 w-[40%]" src="src/images/couch-1.png" alt="">
         <div class="w-full h-[16%] bg-primary-2 absolute bottom-0 left-0"></div>
 
-        <button type="button" @click="checkAnswer(answer_3, 9)" class="absolute bottom-[5%] right-[5%] w-[20%] drop-shadow-md">
+        <button type="button" @click="checkAnswer(answer_3, 9)" class=" drop-shadow-md">
           <img class="w-full" src="src/images/answer-button.png" alt="">
         </button>
+
+<div class="absolute bottom-[5%] right-[5%] flex justify-end">
+          <button type="button"  @click="checkAnswer(answer_1, 5)" class="w-[40%]  mr-[2%] drop-shadow-md">
+            <img class="w-full" src="src/images/answer-button.png" alt="">
+          </button>
+
+          <button type="button"  @click="skipPage(5)" class="w-[14%] h-auto drop-shadow-md">
+            <img class="w-full" src="src/images/skip-button-1.png" alt="">
+          </button>
+        </div>
     </section>
 
     <!-- page 9 - answer 3 -->
@@ -228,9 +253,15 @@
 
             <input id="answer_field" v-model="user_answer" class="focus:bg-primary-2 outline-none mt-[2%] w-[100%] border-[10px] p-[10px] bg-transparent rounded-[20px] border-primary-2 text-[20px] font-tertiary-font uppercase font-bold" type="text">
 
-            <button type="button"  @click="checkAnswer(answer_4, 11)" class="mt-[5%] w-[50%] drop-shadow-md">
-              <img class="w-full" src="src/images/answer-button.png" alt="">
-            </button>
+           <div class="mt-[5%] w-[100%]">
+              <button type="button"  @click="checkAnswer(answer_4, 11)" class="w-[50%]  mr-[2%] drop-shadow-md">
+                <img class="w-full" src="src/images/answer-button.png" alt="">
+              </button>
+
+              <button type="button"  @click="skipPage(11)" class="w-[17%] h-auto drop-shadow-md">
+                <img class="w-full" src="src/images/skip-button-1.png" alt="">
+              </button>
+            </div>
           </div>
 
           
@@ -278,9 +309,15 @@
 
             <input id="answer_field" v-model="user_answer" class="focus:bg-primary-2 outline-none mt-[2%] w-[100%] border-[10px] p-[10px] bg-transparent rounded-[20px] border-primary-2 text-[20px] font-tertiary-font uppercase font-bold" type="text">
 
-            <button type="button"  @click="checkAnswer(answer_5, 13)" class="mt-[5%] w-[50%] drop-shadow-md">
-              <img class="w-full" src="src/images/answer-button.png" alt="">
-            </button>
+            <div class="mt-[5%] w-[100%]">
+              <button type="button"  @click="checkAnswer(answer_5, 13)" class="w-[50%]  mr-[2%] drop-shadow-md">
+                <img class="w-full" src="src/images/answer-button.png" alt="">
+              </button>
+
+              <button type="button"  @click="skipPage(13)" class="w-[17%] h-auto drop-shadow-md">
+                <img class="w-full" src="src/images/skip-button-1.png" alt="">
+              </button>
+            </div>
           </div>
           
         </div>

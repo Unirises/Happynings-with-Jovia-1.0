@@ -56,6 +56,11 @@ const app = new Vue({
                 }, 1000)
             }
         },
+        skipPage: function(page_id){
+            document.querySelector('#correct').play()
+            this.user_answer = ''
+            this.nextPage(page_id)
+        },
         soundStatus: function () {
             this.sound_status = !this.sound_status;
             const music = document.querySelector('#music');
