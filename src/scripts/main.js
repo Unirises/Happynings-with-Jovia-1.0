@@ -7,16 +7,16 @@ function getImageUrl(name) {
         import.meta.url).href
 }
 
-const app = new Vue({
+new Vue({
     el: '#app',
     data: {
         active_page: 0,
         user_answer: '',
         sound_status: false,
-        answer_1: ['Hiraya Manawari'],
-        answer_2: ['Matutina'],
-        answer_3: ['Ang pagong at ang matsing'], //removed
-        answer_4: ['Magandang Gabi Bayan', 'Magandang Gabi Bayan!'],
+        answer_1: ['Gina'],
+        answer_2: ['Piolo'],
+        answer_3: ['Chickenjoy'], //removed
+        answer_4: ['Sports'],
         answer_5: ['Yellow'],
         is_answer_correct: true
     },
@@ -69,7 +69,6 @@ const app = new Vue({
             if (this.sound_status) {
                 music.play()
                 sound_status.src = getImageUrl('sound-on')
-
             } else {
                 music.pause()
                 sound_status.src = getImageUrl('sound-off')
