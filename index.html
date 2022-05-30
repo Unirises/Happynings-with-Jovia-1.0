@@ -122,18 +122,12 @@
         <div class="grid grid-cols-2 w-full h-max">
           <div class="w-full h-screen flex place-items-center relative">
             <div class="ml-[20%] -mt-[30%] w-[65%]">
+              <img
+                class="w-[63%] h-auto absolute top-[14%] left-[21%] aspect-video"
+                src="src/images/image-8.gif"
+                alt=""
+              />
               <img class="w-full h-auto" src="src/images/tv-1.png" alt="" />
-              <audio
-                id="music-trigger"
-                controls
-                class="block z-50 absolute top-[42%] left-[35%] w-[35%]"
-              >
-                <source
-                  src="./src/audio/hiaraya_manwari.mp3"
-                  type="audio/mpeg"
-                />
-                Your browser does not support the audio element.
-              </audio>
             </div>
           </div>
 
@@ -191,14 +185,14 @@
         class="flex items-center justify-center bg-primary-1 w-full h-screen"
         v-if="getPage() == 5"
       >
-        <iframe
-          class="z-50 w-[33%] h-auto aspect-video absolute top-[12.5%] right-[12.1%]"
-          src="https://drive.google.com/file/d/1O_G-sbQZt1RDLqo3uyi4y__B8u0rQx5F/preview"
-          allow="autoplay"
-          frameborder="0"
-        ></iframe>
         <img
-          class="absolute left-[15%] top-[20%] z-50 w-[30%]"
+          class="z-50 w-[33%] h-auto aspect-video absolute top-[12.5%] right-[12.1%]"
+          src="src/images/image-8.gif"
+          alt=""
+        />
+
+        <img
+          class="absolute left-[20%] top-[15%] z-50 w-[15%]"
           src="src/images/a1.svg"
           alt=""
         />
@@ -238,7 +232,7 @@
           <div class="w-full h-screen flex place-items-center relative">
             <div class="ml-[20%] -mt-[10%] w-[65%] relative">
               <img
-                class="w-[97%] h-auto absolute top-[5%] left-[1.5%]"
+                class="w-[97%] h-auto absolute top-[5%] left-[1%] aspect-video"
                 src="src/images/image-3.gif"
                 alt=""
               />
@@ -283,7 +277,7 @@
             class="w-full h-screen flex flex-col place-items-center relative"
           >
             <img
-              class="mt-[10%] mr-[40%] w-[60%]"
+              class="mt-[12%] mr-[40%] w-[80%]"
               src="src/images/q2.svg"
               alt=""
             />
@@ -360,7 +354,7 @@
       </section>
 
       <!-- page 8 - question 3 -->
-      <section
+      <!-- <section
         @keyup.enter="checkAnswer(answer_3, 9)"
         class="flex items-center justify-center bg-primary-1 w-full h-screen"
         v-if="getPage() == 8"
@@ -436,10 +430,10 @@
             <img class="w-full" src="src/images/skip-button-1.png" alt="" />
           </button>
         </div>
-      </section>
+      </section> -->
 
       <!-- page 9 - answer 3 -->
-      <section
+      <!-- <section
         class="flex items-center justify-center bg-primary-1 w-full h-screen"
         v-if="getPage() == 9"
       >
@@ -472,7 +466,7 @@
         >
           <img class="w-full" src="src/images/continue-button.png" alt="" />
         </button>
-      </section>
+      </section> -->
 
       <!-- page 10 - question 4 -->
       <section
@@ -484,13 +478,8 @@
           <div class="w-full h-screen flex place-items-center relative">
             <div class="ml-[20%] -mt-[10%] w-[65%] relative">
               <img
-                class="w-[50%] h-[32%] aspect-video absolute top-[6%] left-[8%] z-50"
-                src="src/images/image-6.gif"
-                alt=""
-              />
-              <img
-                class="w-[97%] h-auto rounded-xl absolute top-[0.5%] left-[2%]"
-                src="src/images/image-5.png"
+                class="w-[90%] h-auto rounded-xl absolute top-[0.5%] left-[5%]"
+                src="src/images/image-5.gif"
                 alt=""
               />
               <img class="w-full h-auto" src="src/images/tv-3.png" alt="" />
@@ -534,7 +523,7 @@
             class="w-full h-screen flex flex-col place-items-center relative"
           >
             <img
-              class="mt-[10%] mr-[40%] w-[60%]"
+              class="mt-[20%] mr-[20%] w-[90%]"
               src="src/images/q4.svg"
               alt=""
             />
@@ -565,13 +554,19 @@
         v-if="getPage() == 11"
       >
         <img
-          class="absolute right-[15%] top-[10%] z-50 w-[40%]"
+          class="absolute right-[10%] top-[10%] z-50 w-[40%]"
           src="src/images/a4.svg"
           alt=""
         />
         <img
           class="absolute right-[2%] bottom-[25%] z-50 w-[9%]"
           src="src/images/plant-7.png"
+          alt=""
+        />
+
+        <img
+          class="w-[32%] overflow-hidden object-cover h-[40%] z-50 apsect-video rounded-xl absolute top-[7%] left-[11.5%]"
+          src="src/images/image-5.gif"
           alt=""
         />
         <img
@@ -606,7 +601,7 @@
             class="w-full h-screen flex flex-col place-items-center relative"
           >
             <img
-              class="absolute top-[10%] left-[40%] w-[65%]"
+              class="absolute top-[15%] left-[30%] w-[90%]"
               src="src/images/q5.svg"
               alt=""
             />
@@ -615,7 +610,7 @@
           <div class="w-full h-screen flex place-items-center relative">
             <div class="ml-[20%] -mt-[10%] w-[65%] relative">
               <img
-                class="w-[97%] aspect-video h-auto rounded-xl absolute top-[2.5%] left-[2%]"
+                class="w-[97%] aspect-video h-auto rounded-xl absolute top-[2.5%] left-[0%]"
                 src="src/images/image-7.gif"
                 alt=""
               />
@@ -680,8 +675,14 @@
           src="src/images/plant-9.png"
           alt=""
         />
+
         <img
-          class="absolute bottom-[5%] left-[50%] transform translate-x-[-50%] z-50 w-[45%]"
+          class="w-[38%] aspect-video h-auto rounded-xl absolute top-[42.5%] left-[50%] transform translate-y-[-50%] translate-x-[-50%] z-50"
+          src="src/images/image-7.gif"
+          alt=""
+        />
+        <img
+          class="absolute bottom-[5%] left-[50%] transform translate-x-[-50%] z-40 w-[45%]"
           src="src/images/tv-8.png"
           alt=""
         />
